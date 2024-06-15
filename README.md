@@ -44,6 +44,8 @@ source ~/.bashrc ~/.bash_profile
 - ./raws/data-gospider               -- List uri from gospider [url] + removing junk uri 
 - ./raws/allurls                     -- data-gospider + data-gau
 - ./raws/subdomain-resolved          -- Subdomain resolvable [A,AAAA,CNAME]
+
+
 ------------------------------------------------------------------------------------------------
 - ./juicyfiles/jsfiles               -- All JS files :: gau + gospider result
 - ./juicyfiles/jsfiles2              -- Extract JS files < ./juicyfiles/jsfile + otherjuicyfile 
@@ -64,6 +66,8 @@ source ~/.bashrc ~/.bash_profile
 - ./interest/passingparams           -- Passing parameter list        < ./raws/allurls
 - ./interest/pathuri                 -- Extract Path only <brute>     < ./raws/allurls
 - ./interest/paramsuri               -- Extract params only <brute>   < ./interest/paramsuniq
+
+
 ------------------------------------------------------------------------------------------------
 - ./fuzz/fuzz-fileinclusion          -- gf fileinclusion pattern      < ./interest/paramsuniq
 - ./fuzz/fuzz-openredirect           -- gf redirect pattern           < ./interest/paramsuniq
