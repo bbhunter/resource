@@ -2,7 +2,7 @@
 
 ## Installation
 ```bash
-# installer.sh (Kali Linux 2019.4) --> Use this script to installing all dependencies
+# installer.sh
 cd resource; chmod +x installer.sh; ./installer.sh 
 
 # Reload .bashrc & .bash_profile after finishing installation
