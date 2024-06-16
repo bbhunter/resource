@@ -10,29 +10,32 @@ OKGREEN='\033[92m'; RESET='\e[0m';
 # Enumerating subdomains + collecting urls
 printf '%b\n\n\n'; echo -e "$OKGREEN Step1 : Subdomain Alteration & Permutation $RESET"
 cd /root/sudomy; ./sudomy -d $1 --no-probe -o $1_sub; 
-cd $1_sub/Sudomy-Output/$1; mkdir interest wordlist raws fuzz automationtesting juicyfiles; 
+cd $1_sub/Sudomy-Output/$1; mkdir interest wordlist raws fuzz automationtesting juicy; 
 cat subdomain.txt | grep -F "$1" | tee subdomain.out; rm subdomain.txt;
-
 
 #---------------------------------------------------------------------------------------------------------------------------------#
 # Subdomain A,AAAA Resolving + IP resolved Cloudflare scan 
-printf '%b\n\n\n'; echo -e "$OKGREEN Step2 : Subdomain A,AAAA,CNAME Resolving + IP resolved Cloudflare scan $RESET"
+printf '%b\n\n\n'; echo -e "$OKGREEN Step2 : Subdomain A,AAAA Resolving + IP resolved Cloudflare scan $RESET"
 
 	# Subdomain A,AAAA,CNAME resolving
-	cat subdomain.out | dnsprobe -r A -silent -t 500 | awk '{print $2" "$1}' | tee resolv1; 
-	cat subdomain.out | dnsprobe -r AAAA -silent -t 500 | awk '{print $2" "$1}' | tee resolv2;
-	cat subdomain.out | dnsprobe -r CNAME -silent -t 500 | awk '{print $2" "$1}' | tee resolv3;
-	sort -u resolv1 resolv2 > ipresolv.out; sort -u resolv1 resolv2 resolv3 > ./raws/subdomain-resolved; rm resolv[1-3];
+	cat subdomain.out | dnsx -silent -a -resp-only | tee resolv1; 
+	cat subdomain.out | dnsx -silent -aaaa -resp-only | tee resolv2;
+	sort -u resolv1 resolv2 > ipresolv.out; rm resolv[1-2];
 
 	# CloudFlare scan
 	cat ipresolv.out | awk '{print $1}' | cf-check | sort -u | tee cf-ipresolv.out;
 
+#---------------------------------------------------------------------------------------------------------------------------------#
+# Subdomain CNAME Resolving to check Hosting webstack
+cat subdomain.out | dnsx -silent -cname -resp | tee webstack-cname.out;
 
 #---------------------------------------------------------------------------------------------------------------------------------#
 # Subdomain HTTP Probing & Status Code Checking
 printf '%b\n\n\n'; echo -e "$OKGREEN Step3 : Subdomain HTTP Probing [80,443] & Status Code Checking $RESET"
 cat subdomain.out | httpx -vhost -status-code -content-length -web-server -title -threads 60 -timeout 5 | sort | \
 awk '{print $2" "$3 " " $1" "$4$5$6$7$8$9$10$11$12$13}' | tee httpx-raws.out; cat httpx-raws.out | awk '{print $3}' | tee httpx.out; 
+
+
 
 
 #---------------------------------------------------------------------------------------------------------------------------------#
@@ -153,12 +156,12 @@ filter4="myslider|modernizr|modernizr\.(min|custom)|hip";
 	egrep "${otherext}" ./raws/data-gau | hakcheckurl -t 40 | grep "200" | awk '{print $2}' | tee gau-other-temp; 
 	egrep "\[url\]" ./raws/data-gospider | egrep "${otherext}" | awk '{print $5}' | tee gospider-other-temp;
 
-		sort -u gau-js-temp gospider-js-temp > ./juicyfiles/allJSfiles-temp1;
-		sort -u gau-other-temp gospider-other-temp > ./juicyfiles/otherfiles;
+		sort -u gau-js-temp gospider-js-temp > ./juicy/allJSfiles-temp1;
+		sort -u gau-other-temp gospider-other-temp > ./juicy/otherfiles;
 
 	# Delete junk js -- awk -F / '{print $NF}'
-	cat ./juicyfiles/allJSfiles-temp1 | grep "\.js" | cut -d"?" -f1 | egrep -v "${filterpath}${filter1}${filter2}${filter3}${filter4}" | \
-	sort -u | tee ./juicyfiles/jsfiles
+	cat ./juicy/allJSfiles-temp1 | grep "\.js" | cut -d"?" -f1 | egrep -v "${filterpath}${filter1}${filter2}${filter3}${filter4}" | \
+	sort -u | tee ./juicy/jsfiles
 
 rm gau-other-temp gospider-other-temp gospider-js-temp gau-js-temp;
 
@@ -167,7 +170,7 @@ rm gau-other-temp gospider-other-temp gospider-js-temp gau-js-temp;
 # Fetch travis build log
 printf '%b\n\n\n'; echo -e "$OKGREEN Step10 : Fetch Travis Build Log $RESET"
 echo $1 | cut -d"." -f1 | tee temp; for org in $(cat temp); do echo "$org"; done
-rm temp; cd ./juicyfiles; secretz -c 10 -t $org; mv output/ travislog; cd ../;
+rm temp; cd ./juicy; secretz -c 10 -t $org; mv output/ travislog; cd ../;
 
 
 #---------------------------------------------------------------------------------------------------------------------------------#
