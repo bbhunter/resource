@@ -51,7 +51,6 @@ source ~/.bashrc ~/.bash_profile
 
 # Output = All Juicy Data + Generate Interest Pattern
 ------------------------------------------------------------------------------------------------
-- ./interest/faviconhash             -- Favicon hash checking         < cf-ipresolv + httpx.out 
 - ./interest/variablefromjs          -- Interest variable from js     < ./juicyfiles/download/js*
 - ./interest/querystrings-keys       -- List querystrings + keys      < ./raws/allurls
 - ./interest/interesturi-allurls     -- Interest path [/api,etc]      < ./raws/allurls
@@ -73,11 +72,6 @@ source ~/.bashrc ~/.bash_profile
 - ./wordlist/paths                   -- Generate paths wordlist       < ./raws/allurls * js
 - ./wordlist/js-variable             -- Collecting var                < ./juicyfiles/download/js*
 
-
-# Favicon Hash Fingerprint
-99395752    : 'slack-instance'
-878647854   : 'atlasian'
-116323821   : 'spring-boot'     --> Spring Boot Actuator (jolokia XXE/RCE)
 ```
 
 
