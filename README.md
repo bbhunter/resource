@@ -15,23 +15,23 @@ source ~/.bashrc ~/.bash_profile
 # automate-dnsgen <target.com>
 # automate-portscan <target.com>
 ------------------------------------------------------------------------------------------------
-- subdomain.out         -- Subdomain list               < $target
-   > webstack-cname.out                -- Hosting/Webstack [cname]     < subdomain.out   
-   > virtualhost.out                   -- Subdomain [vhost]            < subdomain.out 
-   > ipresolv.out                      -- IP resolved list             < subdomain.out
-   > cf-ipresolv.out                   -- Cloudflare scan              < ipresolv.out 
-   > httpx-raws.out                    -- Probing + statuscode         < subdomain.out 
-   > httpx.out                         -- Subdomain live [80,443]      < httpx-raws.out 
-   > httpx-9999.out                    -- Subdomain live [8000-9999]   < unique httpx.out::subdomain.out
-   > openport.out                      -- Active port scanning [full]  < cf-ipresolv.out
-   > webanalyzes.out                   -- Webanalyzer scan             < httpx.out
-   > gowitness.html                    -- Screenshoting report         < subdomain.out 
-   > dnsgen.out                        -- Subdomain alt+perm           < subdomain.out 
+> subdomain.out                        : Subdomain list               < $target
+   > webstack-cname.out                : Hosting/Webstack [cname]     < subdomain.out   
+   > virtualhost.out                   : Subdomain [vhost]            < subdomain.out 
+   > ipresolv.out                      : IP resolved list             < subdomain.out
+   > cf-ipresolv.out                   : Cloudflare scan              < ipresolv.out 
+   > httpx-raws.out                    : Probing + statuscode         < subdomain.out 
+   > httpx.out                         : Subdomain live [80,443]      < httpx-raws.out 
+   > httpx-9999.out                    : Subdomain live [8000-9999]   < unique httpx.out::subdomain.out
+   > openport.out                      : Active port scanning [full]  < cf-ipresolv.out
+   > webanalyzes.out                   : Webanalyzer scan             < httpx.out
+   > gowitness.html                    : Screenshoting report         < subdomain.out 
+   > dnsgen.out                        : Subdomain alt+perm           < subdomain.out 
    ------------------------------------------------------------------------------------------------
-   > ./raws/data-gau                   -- List uri from gau + removing junk uri
-   > ./raws/data-gospider              -- List uri from gospider [url] + removing junk uri 
-   > ./raws/allurls                    -- data-gospider + data-gau
-   > ./raws/subdomain-resolved         -- Subdomain resolvable [A,AAAA,CNAME]
+   > ./raws/data-gau                   : List uri from gau + removing junk uri
+   > ./raws/data-gospider              : List uri from gospider [url] + removing junk uri 
+   > ./raws/allurls                    : data-gospider + data-gau
+   > ./raws/subdomain-resolved         : Subdomain resolvable [A,AAAA,CNAME]
 
 # automate-download <target.com>
 ------------------------------------------------------------------------------------------------
