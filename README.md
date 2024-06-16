@@ -1,4 +1,6 @@
 ***bash_profile*** :: Automated reconnaissance wrapper - collecting juicy data & vulnerable testing
+
+## Dependencies
 ```bash
 # Dependencies --> go binaries :: https://github.com/missme3f/bin
 sudomy(bash), comb(go), cf-check(go), CORS-Scanner(go), dalfox(go), dnsprobe(go), ffuf(go), 
@@ -11,6 +13,8 @@ wscat(npm), retire.js(npm)
 apkurlgrep(go), clickjacking-poc(go), fdns(go), gitleaks(go), go-dork(go), gobuster(go), httprobe(go),
 hakcheckurl(go), metabigor(go), qsreplace(go)
 ```
+
+## Installation
 ```bash
 # installer.sh (Kali Linux 2019.4) --> Use this script to installing all dependencies
 cd resource; chmod +x installer.sh; ./installer.sh 
