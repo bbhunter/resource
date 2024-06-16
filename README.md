@@ -16,7 +16,6 @@ source ~/.bashrc ~/.bash_profile
 # automate-portscan <target.com>
 ------------------------------------------------------------------------------------------------
 > subdomain.out                   : Subdomain list               < $target
-   > webstack-cname.out           : Hosting/Webstack [cname]     < subdomain.out   
    > virtualhost.out              : Subdomain [vhost]            < subdomain.out 
    > ipresolv.out                 : IP resolved list             < subdomain.out
    > cf-ipresolv.out              : Cloudflare scan              < ipresolv.out 
@@ -24,7 +23,9 @@ source ~/.bashrc ~/.bash_profile
    > httpx.out                    : Subdomain live [80,443]      < httpx-raws.out 
    > httpx-9999.out               : Subdomain live [8000-9999]   < unique httpx.out::subdomain.out
    > openport.out                 : Active port scanning [full]  < cf-ipresolv.out
-   > webanalyzes.out              : Webanalyzer scan             < httpx.out
+
+   > webstack-cname.out           : Hosting/Webstack [cname]     < subdomain.out   
+   > webstack-analyzes.out        : Webanalyzer scan             < httpx.out
    > gowitness.html               : Screenshoting report         < subdomain.out 
    > dnsgen.out                   : Subdomain alt+perm           < subdomain.out 
    ------------------------------------------------------------------------------------------------
