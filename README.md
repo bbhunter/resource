@@ -1,5 +1,3 @@
-***bash_profile*** :: Automated reconnaissance wrapper - collecting juicy data & vulnerable testing
-
 ## Installation
 ```bash
 # installer.sh
