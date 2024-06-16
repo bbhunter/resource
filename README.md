@@ -49,26 +49,26 @@ source ~/.bashrc ~/.bash_profile
 
 # Output = All Juicy Data + Generate Interest Pattern
 ------------------------------------------------------------------------------------------------
-> ./interest/variablefromjs          : Interest variable from js     < ./juicyfiles/download/js*
-> ./interest/querystrings-keys       : List querystrings + keys      < ./raws/allurls
-> ./interest/interesturi-allurls     : Interest path [/api,etc]      < ./raws/allurls
-> ./interest/interesturi-js          : Interest path [/api,etc]      < ./raws/data-gospider 
-> ./interest/paramsuniq              : Unique parameter list [live]  < ./raws/allurls
-> ./interest/passingparams           : Passing parameter list        < ./raws/allurls
-> ./interest/pathuri                 : Extract Path only <brute>     < ./raws/allurls
-> ./interest/paramsuri               : Extract params only <brute>   < ./interest/paramsuniq
+> ./interest/variablefromjs       : Interest variable from js     < ./juicyfiles/download/js*
+> ./interest/querystrings-keys    : List querystrings + keys      < ./raws/allurls
+> ./interest/interesturi-allurls  : Interest path [/api,etc]      < ./raws/allurls
+> ./interest/interesturi-js       : Interest path [/api,etc]      < ./raws/data-gospider 
+> ./interest/paramsuniq           : Unique parameter list [live]  < ./raws/allurls
+> ./interest/passingparams        : Passing parameter list        < ./raws/allurls
+> ./interest/pathuri              : Extract Path only <brute>     < ./raws/allurls
+> ./interest/paramsuri            : Extract params only <brute>   < ./interest/paramsuniq
 
-> ./fuzz/fuzz-fileinclusion          : gf fileinclusion pattern      < ./interest/paramsuniq
-> ./fuzz/fuzz-openredirect           : gf redirect pattern           < ./interest/paramsuniq
-> ./fuzz/fuzz-rce                    : gf rce pattern                < ./interest/paramsuniq
-> ./fuzz/fuzz-idor                   : gf idor pattern               < ./interest/paramsuniq
-> ./fuzz/fuzz-sqli                   : gf sqli pattern               < ./interest/paramsuniq
-> ./fuzz/fuzz-ssrf                   : gf ssrf pattern               < ./interest/paramsuniq
-> ./fuzz/fuzz-ssti                   : gf ssti pattern               < ./interest/paramsuniq
+> ./fuzz/fuzz-fileinclusion       : gf fileinclusion pattern      < ./interest/paramsuniq
+> ./fuzz/fuzz-openredirect        : gf redirect pattern           < ./interest/paramsuniq
+> ./fuzz/fuzz-rce                 : gf rce pattern                < ./interest/paramsuniq
+> ./fuzz/fuzz-idor                : gf idor pattern               < ./interest/paramsuniq
+> ./fuzz/fuzz-sqli                : gf sqli pattern               < ./interest/paramsuniq
+> ./fuzz/fuzz-ssrf                : gf ssrf pattern               < ./interest/paramsuniq
+> ./fuzz/fuzz-ssti                : gf ssti pattern               < ./interest/paramsuniq
 
-> ./wordlist/parameter               : Generate params wordlist      < ./raws/allurls
-> ./wordlist/paths                   : Generate paths wordlist       < ./raws/allurls * js
-> ./wordlist/js-variable             : Collecting var                < ./juicyfiles/download/js*
+> ./wordlist/parameter            : Generate params wordlist      < ./raws/allurls
+> ./wordlist/paths                : Generate paths wordlist       < ./raws/allurls * js
+> ./wordlist/js-variable          : Collecting var                < ./juicyfiles/download/js*
 
 ```
 
