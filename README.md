@@ -36,12 +36,11 @@ source ~/.bashrc ~/.bash_profile
 
 # automate-download <target.com>
 ------------------------------------------------------------------------------------------------
-- ./juicyfiles/jsfiles               -- All JS files :: gau + gospider result
-- ./juicyfiles/jsfiles2              -- Extract JS files < ./juicyfiles/jsfile + otherjuicyfile 
-- ./juicyfiles/node_module           -- Extract JS files < /node_modules/
-- ./juicyfiles/otherfiles            -- All other juicyfiles [json,toml,etc] :: gau + gospider
-- ./juicyfiles/travislog             -- Fetched Travis build log
-   ------------------------------------------------------------------------------------------------
+- ./juicyfiles/jsfiles                  -- All JS files :: gau + gospider result
+- ./juicyfiles/jsfiles2                 -- Extract JS files < ./juicyfiles/jsfile + otherjuicyfile 
+- ./juicyfiles/node_module              -- Extract JS files < /node_modules/
+- ./juicyfiles/otherfiles               -- All other juicyfiles [json,toml,etc] :: gau + gospider
+- ./juicyfiles/travislog                -- Fetched Travis build log
    - ./juicyfiles/download/js/          -- download < ./juicyfiles/jsfiles     --force-dir + minify
    - ./juicyfiles/download/js2/         -- download < ./juicyfiles/jsfiles2    --force-dir + minify
    - ./juicyfiles/download/node_module/ -- download < ./juicyfiles/node_module --force-dir + minify
