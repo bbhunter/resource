@@ -1,19 +1,5 @@
 ***bash_profile*** :: Automated reconnaissance wrapper - collecting juicy data & vulnerable testing
 
-## Dependencies
-```bash
-# Dependencies --> go binaries :: https://github.com/missme3f/bin
-sudomy(bash), comb(go), cf-check(go), CORS-Scanner(go), dalfox(go), dnsprobe(go), ffuf(go), 
-gowitness(go), gron(go), gau(go), gf(go), gospider(go), httpx(go), naabu(go), nuclei(go), 
-meg(go), subjack(go), s3enum(go), secretz(go), unfurl(go), webanalyze(go), kxss(go),   
-arjun(py), dsss(py), dnsgen(py), favfreak(py), tplmap(py), js-beautify(py), smuggler(py), linkfinder(py), 
-wscat(npm), retire.js(npm)
-
-# Add ons
-apkurlgrep(go), clickjacking-poc(go), fdns(go), gitleaks(go), go-dork(go), gobuster(go), httprobe(go),
-hakcheckurl(go), metabigor(go), qsreplace(go)
-```
-
 ## Installation
 ```bash
 # installer.sh (Kali Linux 2019.4) --> Use this script to installing all dependencies
@@ -30,7 +16,6 @@ source ~/.bashrc ~/.bash_profile
 # automate-recon <target.com>
 # automate-dnsgen <target.com>
 # automate-portscan <target.com>
-# automate-download <target.com>
 ------------------------------------------------------------------------------------------------
 - subdomain.out         -- Subdomain list               < $target
    - virtualhost.out       -- Subdomain [vhost]            < subdomain.out 
@@ -49,17 +34,22 @@ source ~/.bashrc ~/.bash_profile
    - ./raws/allurls                     -- data-gospider + data-gau
    - ./raws/subdomain-resolved          -- Subdomain resolvable [A,AAAA,CNAME]
 
-
+# automate-download <target.com>
 ------------------------------------------------------------------------------------------------
 - ./juicyfiles/jsfiles               -- All JS files :: gau + gospider result
 - ./juicyfiles/jsfiles2              -- Extract JS files < ./juicyfiles/jsfile + otherjuicyfile 
 - ./juicyfiles/node_module           -- Extract JS files < /node_modules/
 - ./juicyfiles/otherfiles            -- All other juicyfiles [json,toml,etc] :: gau + gospider
 - ./juicyfiles/travislog             -- Fetched Travis build log
-- ./juicyfiles/download/js/          -- download < ./juicyfiles/jsfiles     --force-dir + minify
-- ./juicyfiles/download/js2/         -- download < ./juicyfiles/jsfiles2    --force-dir + minify
-- ./juicyfiles/download/node_module/ -- download < ./juicyfiles/node_module --force-dir + minify
-- ./juicyfiles/download/other/       -- download < ./juicyfiles/otherfiles  --force-dir
+   ------------------------------------------------------------------------------------------------
+   - ./juicyfiles/download/js/          -- download < ./juicyfiles/jsfiles     --force-dir + minify
+   - ./juicyfiles/download/js2/         -- download < ./juicyfiles/jsfiles2    --force-dir + minify
+   - ./juicyfiles/download/node_module/ -- download < ./juicyfiles/node_module --force-dir + minify
+   - ./juicyfiles/download/other/       -- download < ./juicyfiles/otherfiles  --force-dir
+
+
+
+# Output = All Juicy Data + Generate Interest Pattern
 ------------------------------------------------------------------------------------------------
 - ./interest/faviconhash             -- Favicon hash checking         < cf-ipresolv + httpx.out 
 - ./interest/variablefromjs          -- Interest variable from js     < ./juicyfiles/download/js*
@@ -71,8 +61,6 @@ source ~/.bashrc ~/.bash_profile
 - ./interest/pathuri                 -- Extract Path only <brute>     < ./raws/allurls
 - ./interest/paramsuri               -- Extract params only <brute>   < ./interest/paramsuniq
 
-
-------------------------------------------------------------------------------------------------
 - ./fuzz/fuzz-fileinclusion          -- gf fileinclusion pattern      < ./interest/paramsuniq
 - ./fuzz/fuzz-openredirect           -- gf redirect pattern           < ./interest/paramsuniq
 - ./fuzz/fuzz-rce                    -- gf rce pattern                < ./interest/paramsuniq
@@ -80,7 +68,7 @@ source ~/.bashrc ~/.bash_profile
 - ./fuzz/fuzz-sqli                   -- gf sqli pattern               < ./interest/paramsuniq
 - ./fuzz/fuzz-ssrf                   -- gf ssrf pattern               < ./interest/paramsuniq
 - ./fuzz/fuzz-ssti                   -- gf ssti pattern               < ./interest/paramsuniq
-------------------------------------------------------------------------------------------------
+
 - ./wordlist/parameter               -- Generate params wordlist      < ./raws/allurls
 - ./wordlist/paths                   -- Generate paths wordlist       < ./raws/allurls * js
 - ./wordlist/js-variable             -- Collecting var                < ./juicyfiles/download/js*
@@ -163,6 +151,21 @@ XX. Other
     --> Dependencies vulnerability checking (SCA)
     --> SAST
 ```
+
+## Dependencies
+```bash
+# Dependencies --> go binaries :: https://github.com/missme3f/bin
+sudomy(bash), comb(go), cf-check(go), CORS-Scanner(go), dalfox(go), dnsprobe(go), ffuf(go), 
+gowitness(go), gron(go), gau(go), gf(go), gospider(go), httpx(go), naabu(go), nuclei(go), 
+meg(go), subjack(go), s3enum(go), secretz(go), unfurl(go), webanalyze(go), kxss(go),   
+arjun(py), dsss(py), dnsgen(py), favfreak(py), tplmap(py), js-beautify(py), smuggler(py), linkfinder(py), 
+wscat(npm), retire.js(npm)
+
+# Add ons
+apkurlgrep(go), clickjacking-poc(go), fdns(go), gitleaks(go), go-dork(go), gobuster(go), httprobe(go),
+hakcheckurl(go), metabigor(go), qsreplace(go)
+```
+
 
 ## Hardcoded/Sensitive Data Regex Pattern
 | Platform              | Key Type              | Regular Expression                                                           |
