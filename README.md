@@ -49,18 +49,6 @@
 > ./wordlist/parameter            : Generate params wordlist      < ./raws/allurls
 > ./wordlist/paths                : Generate paths wordlist       < ./raws/allurls * js
 > ./wordlist/js-variable          : Collecting var                < ./juicyfiles/download/js*
-
-
-# Automate Testing using Pattern
-------------------------------------------------------------------------------------------------
-> ./fuzz/fuzz-fileinclusion       : gf fileinclusion pattern      < ./interest/paramsuniq
-> ./fuzz/fuzz-openredirect        : gf redirect pattern           < ./interest/paramsuniq
-> ./fuzz/fuzz-rce                 : gf rce pattern                < ./interest/paramsuniq
-> ./fuzz/fuzz-idor                : gf idor pattern               < ./interest/paramsuniq
-> ./fuzz/fuzz-sqli                : gf sqli pattern               < ./interest/paramsuniq
-> ./fuzz/fuzz-ssrf                : gf ssrf pattern               < ./interest/paramsuniq
-> ./fuzz/fuzz-ssti                : gf ssti pattern               < ./interest/paramsuniq
-
 ```
 
 
@@ -79,10 +67,20 @@
    --> ./brute/parameter2       # /resource/wordlist/parameter 
 ```
 
-## Vulnerable Testing
+
+# Vulnerable Testing
 ```bash
 # automate-testing <target.com>
 # automate-s3discovery <target.com>
+# Automate Testing using Pattern
+------------------------------------------------------------------------------------------------
+> ./fuzz/fuzz-fileinclusion       : gf fileinclusion pattern      < ./interest/paramsuniq
+> ./fuzz/fuzz-openredirect        : gf redirect pattern           < ./interest/paramsuniq
+> ./fuzz/fuzz-rce                 : gf rce pattern                < ./interest/paramsuniq
+> ./fuzz/fuzz-idor                : gf idor pattern               < ./interest/paramsuniq
+> ./fuzz/fuzz-sqli                : gf sqli pattern               < ./interest/paramsuniq
+> ./fuzz/fuzz-ssrf                : gf ssrf pattern               < ./interest/paramsuniq
+> ./fuzz/fuzz-ssti                : gf ssti pattern               < ./interest/paramsuniq
 ------------------------------------------------------------------------------------------------
 1.  Hardcoded Sensitive Data Exposure -- Scanning download juicy files 
     <-- ./juicyfiles/download
@@ -135,22 +133,9 @@ XX. Other
     --> SAST
 ```
 
-## Dependencies
-```bash
-# Dependencies --> go binaries :: https://github.com/missme3f/bin
-sudomy(bash), comb(go), cf-check(go), CORS-Scanner(go), dalfox(go), dnsprobe(go), ffuf(go), 
-gowitness(go), gron(go), gau(go), gf(go), gospider(go), httpx(go), naabu(go), nuclei(go), 
-meg(go), subjack(go), s3enum(go), secretz(go), unfurl(go), webanalyze(go), kxss(go),   
-arjun(py), dsss(py), dnsgen(py), favfreak(py), tplmap(py), js-beautify(py), smuggler(py), linkfinder(py), 
-wscat(npm), retire.js(npm)
-
-# Add ons
-apkurlgrep(go), clickjacking-poc(go), fdns(go), gitleaks(go), go-dork(go), gobuster(go), httprobe(go),
-hakcheckurl(go), metabigor(go), qsreplace(go)
-```
 
 
-## Hardcoded/Sensitive Data Regex Pattern
+# Hardcoded/Sensitive Data Regex Pattern
 | Platform              | Key Type              | Regular Expression                                                           |
 |-----------------------|--------------------   |----------------------------------------------------------------------------  |
 | ***Generic credential***    | Password, Token, etc  | "[0-9a-zA-Z*-_/]{20,80}"                                               |
@@ -198,67 +183,3 @@ Todo
 # Gitlab Personal/Private Token
 # Paypal ClientID & Secret
 ```
-
-## Bug Bounty Tools
-| Type              | Tool              | Description                                                         |
-|-------------------|-------------------|---------------------------------------------------------------------|
-| **Army-Knife/SCAN**   | [jaeles](https://github.com/jaeles-project/jaeles)    | The Swiss Army knife for automated Web Application Testing  |
-| **Fetch/PROBE**       | [hakcheckurl](https://github.com/hakluke/hakcheckurl) (main) | Takes a list of URLs and returns their HTTP response codes  |
-| **Fetch/PROBE**       | [httpx](https://github.com/projectdiscovery/httpx) (main)  | Fast and multi-purpose HTTP toolkit allow to run multiple probers using retryablehttp library |
-| **Fetch/PATH**        | [meg](https://github.com/tomnomnom/meg) (main)        | Fetch many paths for many hosts - without killing the hosts   |
-| **Recon/CF**          | [cf-check](https://github.com/dwisiswant0/cf-check) (main)  | Cloudflare Checker written in Go  |
-| **Recon/CRAWL**       | [gospider](https://github.com/jaeles-project/gospider) (main) | Gospider - Fast web spider written in Go                           |
-| **Recon/DOMAIN**      | [sudomy](https://github.com/Screetsec/Sudomy) (main)  | Sudomy is a subdomain enumeration tool to collect subdomains and analyzing domains performing automated reconnaissance (recon) for bug hunting / pentesting                          |
-| **Recon/DNS**         | [dnsprobe](https://github.com/projectdiscovery/dnsprobe) (main) | DNSProb is a tool built on top of retryabledns that allows you to perform multiple dns queries of your choice with a list of user supplied resolvers.   |
-| **Recon/DNS**         | [hakrevdns](https://github.com/hakluke/hakrevdns) (addons) | Small, fast tool for performing reverse DNS lookups en masse. |
-| **Recon/DNS**         | [shuffledns](https://github.com/projectdiscovery/shuffledns) (addons)   | shuffleDNS is a wrapper around massdns written in go that allows you to enumerate valid subdomains using active bruteforce as well as resolve subdomains with wildcard handling and easy input-output support. |
-| **Recon/DNS**         | [altdns](https://github.com/infosec-au/altdns) (addons)    | Generates permutations, alterations and mutations of subdomains and then resolves them |
-| **Recon/DNS**         | [dnsgen](https://github.com/ProjectAnte/dnsgen) (main)     | Generates combination of domain names from the provided input. |
-| **Recon/FAVICON**     | [FavFreak](https://github.com/devanshbatham/FavFreak) | Making Favicon.ico based Recon Great again !  |
-| **Recon/PORT**        | [naabu](https://github.com/projectdiscovery/naabu) (main)   | A fast port scanner written in go with focus on reliability and simplicity.  |
-| **Recon/WEBANLYZE**   | [webanalyze](https://github.com/rverton/webanalyze) (main)  | Port of Wappalyzer (uncovers technologies used on websites) in Go to automate scanning.  |
-| **Recon/WVS**         | [nuclei](https://github.com/projectdiscovery/nuclei) (main) | Nuclei is a fast tool for configurable targeted scanning based on templates offering massive extensibility and ease of use.  |
-| **Recon/URLS**        | [gau](https://github.com/lc/gau) (main)               | Fetch known URLs from AlienVault's Open Threat Exchange, the Wayback Machine, and Common Crawl.  |
-| **Scanner/FUZZ**      | [ffuf](https://github.com/ffuf/ffuf) (main)           |  Fast web fuzzer written in Go|
-| **Scanner/FUZZ**      | [Arjun](https://github.com/s0md3v/Arjun) (main)       | HTTP parameter discovery suite. | 
-| **Scanner/TKOVER**    | [subjack](https://github.com/haccer/subjack) (main)   | Subdomain Takeover tool written in Go |
-| **Scanner/CORS**      | [CORS-Scanner ](https://github.com/Tanmay-N/CORS-Scanner) (main) | CORS-Scanner is written in go, designed to discover CORS misconfigurations vulnerabilities of web application. |
-| **Scanner/DESYNC**    | [smuggler](https://github.com/defparam/smuggler) (main)     | An HTTP Request Smuggling / Desync testing tool written in Python 3 |
-| **Scanner/SSTI**      | [tplmap](https://github.com/epinna/tplmap) (main)           | Server-Side Template Injection and Code Injection Detection and Exploitation Tool  |
-| **Scanner/SSRF**      | [SSRFmap](https://github.com/swisskyrepo/SSRFmap) (addons)  | Automatic SSRF fuzzer and exploitation tool |
-| **Scanner/SQLI**      | [DSSS](https://github.com/stamparm/DSSS) (main)             | Damn Small SQLi Scanner  |
-| **Scanner/SQLI**      | [Atlas](https://github.com/m4ll0k/Atlas)              | Quick SQLMap Tamper Suggester  |
-| **Scanner/SQL**       | [sqlmap](https://github.com/sqlmapproject/sqlmap)     | Automatic SQL injection and database takeover tool |
-| **Scanner/SCA**       | [retire.js ](https://github.com/retirejs/retire.js/) (main) | Scanner detecting the use of JavaScript libraries with known vulnerabilities  |
-| **Scanner/S3**        | [S3Scanner](https://github.com/sa7mon/S3Scanner)      | Scan for open AWS S3 buckets and dump the contents |
-| **Scanner/XSS**       | [dalfox](https://github.com/hahwul/dalfox)            | DalFox(Finder Of XSS) / Parameter Analysis and XSS Scanning tool based on golang |
-| **Scanner/XSS**       | [kxss](https://github.com/tomnomnom/hacks/tree/master/kxss)    | XSS Reflection scanner |
-| **Scanner/XSS**       | [XSStrike](https://github.com/s0md3v/XSStrike)        | Most advanced XSS scanner. | 
-| **Utility/CALLBACK**  | [dnsobserver](https://github.com/allyomalley/dnsobserver) | A handy DNS service written in Go to aid in the detection of several types of blind vulnerabilities. It monitors a pentester's server for out-of-band DNS interactions and sends lookup notifications via Slack. |
-| **Utility/COMBINE**   | [comb](https://github.com/tomnomnom/hacks/tree/master/comb)    | Combine the lines from two files in every combination. |
-| **Utility/FLOW**      | [SequenceDiagram](https://sequencediagram.org)        | Online tool for creating UML sequence diagrams |
-| **Utility/ENV**       | [axiom](https://github.com/pry0cc/axiom)              | A dynamic infrastructure toolkit for red teamers and bug bounty hunters! |
-| **Utility/SCRNSHOT**  | [gowitness](https://github.com/sensepost/gowitness)   | mag gowitness - a golang, web screenshot utility using Chrome Headless  |
-| **Utility/GREP**      | [gf](https://github.com/tomnomnom/gf)                 | A wrapper around grep, to help you grep for things |
-| **Utility/JSON**      | [gron](https://github.com/tomnomnom/gron)             | Make JSON greppable! | 
-| **Utility/JSPARSER**  | [LinkFinder](https://github.com/GerbenJavado/LinkFinder)    | A python script that finds endpoints in JavaScript files  |
-| **Utility/MINIFY**    | [js-beautify](https://github.com/beautify-web/js-beautify)    |  Beautifier for javascript  |
-| **Utility/URLPARSER** | [unfurl](https://github.com/tomnomnom/unfurl)         | Pull out bits of URLs provided on stdin  |
-| **Utility/TEMPLATE**  | [bountyplz](https://github.com/fransr/bountyplz)      | Automated security reporting from markdown templates (HackerOne and Bugcrowd are currently the platforms supported) |
-| **Utility/VULN**      | [Gopherus](https://github.com/tarunkant/Gopherus)     | This tool generates gopher link for exploiting SSRF and gaining RCE in various servers | 
-| **Utility/VULN**      | [oxml_xxe](https://github.com/BuffaloWill/oxml_xxe)   | A tool for embedding XXE/XML exploits into different filetypes | 
-| **Utility/VULN**      | [postMessage-tracker](https://github.com/fransr/postMessage-tracker) | A Chrome Extension to track postMessage usage (url, domain and stack) both by logging using CORS and also visually as an extension-icon |
-| **Utility/VULN**      | [s3-bucket-list](https://addons.mozilla.org/en-US/firefox/addon/s3-bucket-list/) | A Chrome Extension to Finds Amazon S3 Buckets while browsing then records it in the add-on content. |
-| **Utility/KEYHACK**   | [keyhacks](https://github.com/streaak/keyhacks) | Repository which shows quick ways in which API keys leaked by a bug bounty program can be checked to see if they're valid.  |
-| **Utility/KEYHACK**   | [AdvancedKeyHacks](https://github.com/udit-thakkur/AdvancedKeyHacks) | API Key/Token Exploitation Made easy.  |
-| **List/PAYLOAD**      | [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings) | A list of useful payloads and bypass for Web Application Security and Pentest/CTF |
-| **List/WORDLIST**     | [SecLists](https://github.com/danielmiessler/SecLists) | SecLists is the security tester's companion. It's a collection of multiple types of lists used during security assessments, collected in one place. List types include usernames, passwords, URLs, sensitive data patterns, fuzzing payloads, web shells, and many more. |
-| **List/WORDLIST**     | [CT_subdomains](https://github.com/internetwache/CT_subdomains) | An hourly updated list of subdomains gathered from certificate transparency logs |
-| **Discovery/S3**   | [s3enum](https://github.com/koenrh/s3enum) |  Fast Amazon S3 bucket enumeration tool for pentesters. 
-| **Discovery/CICD** | [secretz](https://github.com/lc/secretz) |  secretz, minimizing the large attack surface of Travis CI  | 
-| **Discovery/GIT** | [gitGraber](https://github.com/hisxo/gitGraber) | Monitor GitHub to search and find sensitive data | 
-| **Discovery/GIT** | [truffleHog](https://github.com/dxa4481/truffleHog) | Searches through git repositories for high entropy strings and secrets, digging deep into commit history | 
-| Discovery/GQL | [graphql-voyager](https://github.com/APIs-guru/graphql-voyager) | 🛰️ Represent any GraphQL API as an interactive graph | 
-| Discovery/GQL | [inql](https://github.com/doyensec/inql) | InQL - A Burp Extension for GraphQL Security Testing | 
-| Scanner/GQL   | [GraphQLmap](https://github.com/swisskyrepo/GraphQLmap) | GraphQLmap is a scripting engine to interact with a graphql endpoint for pentesting purposes. | 
-| Scanner/NOSQL | [NoSQLMap](https://github.com/codingo/NoSQLMap) | Automated NoSQL database enumeration and web application exploitation tool. | 
