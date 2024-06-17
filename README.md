@@ -1,13 +1,3 @@
-## Installation
-```bash
-# installer.sh
-cd resource; chmod +x installer.sh; ./installer.sh 
-
-# Reload .bashrc & .bash_profile after finishing installation
-export GOPATH=$HOME/go GOROOT=/usr/local/go-1.13 PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-source ~/.bashrc ~/.bash_profile 
-```
-
 # Focus on Information Disclosure
 ## Reconnaissance & Collecting Juicy Data 
 ```bash
