@@ -23,16 +23,14 @@ source ~/.bashrc ~/.bash_profile
    > httpx.out                    : Subdomain live [80,443]      < httpx-raws.out 
    > httpx-9999.out               : Subdomain live [8000-9999]   < unique httpx.out::subdomain.out
    > openport.out                 : Active port scanning [full]  < cf-ipresolv.out
-
    > webstack-cname.out           : Hosting/Webstack [cname]     < subdomain.out   
    > webstack-analyzes.out        : Webanalyzer scan             < httpx.out
    > gowitness.html               : Screenshoting report         < subdomain.out 
    > dnsgen.out                   : Subdomain alt+perm           < subdomain.out 
-   ------------------------------------------------------------------------------------------------
-   > ./raws/data-gau              : List uri from gau + removing junk uri
-   > ./raws/data-gospider         : List uri from gospider [url] + removing junk uri 
-   > ./raws/allurls               : data-gospider + data-gau
-   > ./raws/subdomain-resolved    : Subdomain resolvable [A,AAAA,CNAME]
+      > ./raws/data-gau              : List uri from gau + removing junk uri
+      > ./raws/data-gospider         : List uri from gospider [url] + removing junk uri 
+      > ./raws/allurls               : data-gospider + data-gau
+      > ./raws/subdomain-resolved    : Subdomain resolvable [A,AAAA,CNAME]
 
 # automate-download <target.com>
 ------------------------------------------------------------------------------------------------
@@ -59,6 +57,13 @@ source ~/.bashrc ~/.bash_profile
 > ./interest/pathuri              : Extract Path only <brute>     < ./raws/allurls
 > ./interest/paramsuri            : Extract params only <brute>   < ./interest/paramsuniq
 
+> ./wordlist/parameter            : Generate params wordlist      < ./raws/allurls
+> ./wordlist/paths                : Generate paths wordlist       < ./raws/allurls * js
+> ./wordlist/js-variable          : Collecting var                < ./juicyfiles/download/js*
+
+
+# Automate Testing using Pattern
+------------------------------------------------------------------------------------------------
 > ./fuzz/fuzz-fileinclusion       : gf fileinclusion pattern      < ./interest/paramsuniq
 > ./fuzz/fuzz-openredirect        : gf redirect pattern           < ./interest/paramsuniq
 > ./fuzz/fuzz-rce                 : gf rce pattern                < ./interest/paramsuniq
@@ -66,10 +71,6 @@ source ~/.bashrc ~/.bash_profile
 > ./fuzz/fuzz-sqli                : gf sqli pattern               < ./interest/paramsuniq
 > ./fuzz/fuzz-ssrf                : gf ssrf pattern               < ./interest/paramsuniq
 > ./fuzz/fuzz-ssti                : gf ssti pattern               < ./interest/paramsuniq
-
-> ./wordlist/parameter            : Generate params wordlist      < ./raws/allurls
-> ./wordlist/paths                : Generate paths wordlist       < ./raws/allurls * js
-> ./wordlist/js-variable          : Collecting var                < ./juicyfiles/download/js*
 
 ```
 
