@@ -6,7 +6,6 @@
 # automate-portscan <target.com>
 ------------------------------------------------------------------------------------------------
 > subdomain.out                   : Subdomain list               < $target
-> dnsgen.out                      : Subdomain alt+perm           < subdomain.out 
    > virtualhost.out              : Subdomain [vhost]            < subdomain.out 
    > ipresolv.out                 : IP resolved list             < subdomain.out
    > cf-ipresolv.out              : Cloudflare scan              < ipresolv.out 
