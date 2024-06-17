@@ -8,7 +8,7 @@ export GOPATH=$HOME/go GOROOT=/usr/local/go-1.13 PATH=$PATH:$GOROOT/bin:$GOPATH/
 source ~/.bashrc ~/.bash_profile 
 ```
 
-
+# Focus on Information Disclosure
 ## Reconnaissance & Collecting Juicy Data 
 ```bash
 # automate-recon <target.com>
