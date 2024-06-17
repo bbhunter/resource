@@ -6,6 +6,7 @@
 # automate-portscan <target.com>
 ------------------------------------------------------------------------------------------------
 > subdomain.out                   : Subdomain list               < $target
+> dnsgen.out                      : Subdomain alt+perm           < subdomain.out 
    > virtualhost.out              : Subdomain [vhost]            < subdomain.out 
    > ipresolv.out                 : IP resolved list             < subdomain.out
    > cf-ipresolv.out              : Cloudflare scan              < ipresolv.out 
@@ -16,7 +17,6 @@
    > webstack-cname.out           : Hosting/Webstack [cname]     < subdomain.out   
    > webstack-analyzes.out        : Webanalyzer scan             < httpx.out
    > gowitness.html               : Screenshoting report         < subdomain.out 
-   > dnsgen.out                   : Subdomain alt+perm           < subdomain.out 
       > ./raws/data-gau              : List uri from gau + removing junk uri
       > ./raws/data-gospider         : List uri from gospider [url] + removing junk uri 
       > ./raws/allurls               : data-gospider + data-gau
