@@ -8,27 +8,24 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 # Enumerating subdomains + collecting urls (Tool : sudomy)
 echo -e "$OKGREEN Subdomain Alteration & Permutation $RESET"
 cd /home/Sudomy; ./sudomy -d $1 --no-probe -o $1; 
-cd $1/Sudomy-Output/$1; mkdir interest wordlist raws fuzz automationtesting juicy; 
+cd $1/Sudomy-Output/$1; mkdir interest wordlist raws fuzz automationtesting juicy webstack; 
 sudo mv subdomain.txt subdomain.out;
 
 
 #---------------------------------------------------------------------------------------------------------------------------------#
 # Subdomain A,AAAA Resolving + IP resolved Cloudflare scan  (dnsx + cf-check)
-printf '%b\n\n\n'; echo -e "$OKGREEN Step2 : Subdomain A,AAAA Resolving + IP resolved Cloudflare scan $RESET"
+printf '%b\n\n\n'; echo -e "$OKGREEN Step2 : Subdomain A,AAAA Resolving $RESET"
 
 	# Subdomain A,AAAA,CNAME resolving
 	cat subdomain.out | dnsx -silent -a -resp-only | sudo tee resolv1; 
 	cat subdomain.out | dnsx -silent -aaaa -resp-only | sudo tee resolv2;
 	sort -u resolv1 resolv2 | sudo tee ipresolv.out; sudo rm resolv[1-2];
 
-	# CloudFlare scan
-	cat ipresolv.out | awk '{print $1}' | cf-check | sort -u | sudo tee cf-ipresolv.out;
-
 
 #---------------------------------------------------------------------------------------------------------------------------------#
 # Subdomain HTTP Probing & Status Code Checking
-printf '%b\n\n\n'; echo -e "$OKGREEN Step3 : Subdomain HTTP Probing [80,443] & Status Code Checking $RESET"
-cat subdomain.out | httpx -vhost -status-code -content-length -web-server -title -threads 60 -timeout 5 | sort | \
+printf '%b\n\n\n'; echo -e "$OKGREEN Step3 : Subdomain HTTP Probing [80,443] & Status Code Checking $RESET";
+sudo /home/tool/httpx -vhost -status-code -content-length -web-server -title -threads 60 -timeout 5 -l subdomain.out | sort | \
 awk '{print $2" "$3 " " $1" "$4$5$6$7$8$9$10$11$12$13}' | sudo sudo tee httpx-raws.out; 
 cat httpx-raws.out | awk '{print $3}' | sudo tee httpx.out; 
 
@@ -36,9 +33,8 @@ cat httpx-raws.out | awk '{print $3}' | sudo tee httpx.out;
 #---------------------------------------------------------------------------------------------------------------------------------#
 # Check Webstack
 printf '%b\n\n\n'; echo -e "$OKGREEN Step4 : Uncovers technologies from Subdomain list $RESET"
-sudo mkdir webstack;
 cat subdomain.out | dnsx -silent -cname -resp | sudo tee webstack/webstack-cname.out;
-cat httpx.out | httpx -td | sudo tee webstack-httpx.out;
+cat httpx.out | sudo /home/tool/httpx -td | sudo tee webstack-httpx.out;
 
 
 #---------------------------------------------------------------------------------------------------------------------------------#
@@ -48,37 +44,12 @@ cat httpx-raws.out | grep vhost | awk '{print $3}' | sudo tee virtualhost.out;
 
 
 #---------------------------------------------------------------------------------------------------------------------------------#
-# Collecting data (url,endpoint,js,etc) from active crawling
+# Collecting data (url,endpoint,js,etc) from active crawling 
 printf '%b\n\n\n'; echo -e "$OKGREEN Step6 : Crawling URL Data $RESET"
+cat subdomain.out | sudo /home/tool/katana -jc -kf all,robotstxt,sitemapxml -jsl | sudo tee ./raws/allurls;
 
-# Passive Crawling : Webarchive
-cat subdomain.out | gau --retries 2 | sudo tee raws/data-gau-temp;
-
-# Active Crawling
-gospider -d 1 --sitemap --robots -c 10 -t 10 -S httpx.out \
--H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:77.0) Gecko/20100101 Firefox/77.0" | \
-sudo tee tmp.txt; sudo sort -u tmp.txt | sudo tee raws/data-gospider-temp; sudo rm tmp.txt; 
-
-
-#---------------------------------------------------------------------------------------------------------------------------------#
-# Parsing URL list 
-pattern1="(\?|\&)utm(_|-)(source|campaign|content|medium|term)=|\?fbclid=|\?gclid=|\?dclid=|\?mscklid=|\?zanpid=|\?gclsrc=|\?af_(ios|android)_url=|";
-pattern2="\?af_force_deeplink=|\?af_banner=|\?af_web_dp=|\?is_retargeting=|\?af_(dp|esp)=|";
-pattern3="pk_campaign=|piwik_campaign=|\_ga=|\?clickid=|\?Click|\?campaignid=|\?__cf_chl_(jschl|captcha)_tk__|";
-pattern4="pagespeed=noscript|PageSpeed\%3Dnoscript|PageSpeed\%253Dnoscript|";
-pattern5="\?_=|\,|\!|js\?vue";
-
-# Data gau : Remove junk uri + probing
-	cat raws/data-gau-temp | egrep -v "${pattern1}${pattern2}${pattern3}${pattern4}${pattern5}" | \
-	sudo sort -u | sudo tee raws/data-gau; sudo rm raws/data-gau-temp;
-
-# Data gospider : Parsing url + Remove junk uri 
-	egrep "\[(url|form|robots|upload-form)\]" ./raws/data-gospider-temp | awk '{print $5}' | \
-	egrep -v "${pattern1}${pattern2}${pattern3}${pattern4}${pattern5}" | sudo tee ./raws/data-gospider;
-
-# Merger data data-gau + data-gospider-url
-	sort -u raws/data-gospider raws/data-gau | egrep -v "${pattern1}${pattern2}${pattern3}${pattern4}${pattern5}" | \
-	sudo tee ./raws/allurls; sudo rm raws/data-gospider-temp;
+# Collect Hidden Subdomain
+cat raws/allurls | awk -F[/:] '{print $4}' | sort -u | sudo tee subdomain-hidden.out
 
 
 #---------------------------------------------------------------------------------------------------------------------------------#
