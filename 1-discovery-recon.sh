@@ -7,8 +7,8 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 #---------------------------------------------------------------------------------------------------------------------------------#
 # Enumerating subdomains + collecting urls (Tool : sudomy)
 echo -e "$OKGREEN Subdomain Alteration & Permutation $RESET"
-cd /home/Sudomy; ./sudomy -d $1 --no-probe -o $1_sub; 
-cd $1_sub/Sudomy-Output/$1; mkdir interest wordlist raws fuzz automationtesting juicy; 
+cd /home/Sudomy; ./sudomy -d $1 --no-probe -o $1; 
+cd $1/Sudomy-Output/$1; mkdir interest wordlist raws fuzz automationtesting juicy; 
 sudo mv subdomain.txt subdomain.out;
 
 
@@ -66,7 +66,7 @@ pattern1="(\?|\&)utm(_|-)(source|campaign|content|medium|term)=|\?fbclid=|\?gcli
 pattern2="\?af_force_deeplink=|\?af_banner=|\?af_web_dp=|\?is_retargeting=|\?af_(dp|esp)=|";
 pattern3="pk_campaign=|piwik_campaign=|\_ga=|\?clickid=|\?Click|\?campaignid=|\?__cf_chl_(jschl|captcha)_tk__|";
 pattern4="pagespeed=noscript|PageSpeed\%3Dnoscript|PageSpeed\%253Dnoscript|";
-pattern5="\?_=|\,|\!|js\?vue|\_next";
+pattern5="\?_=|\,|\!|js\?vue";
 
 # Data gau : Remove junk uri + probing
 	cat raws/data-gau-temp | egrep -v "${pattern1}${pattern2}${pattern3}${pattern4}${pattern5}" | \
@@ -137,6 +137,7 @@ junk9="zdassets\.com|datadoghq|googletagmanager\.com|unpkg\.com"
   egrep -v "${junk1}${junk2}${junk3}${junk4}${junk5}${junk6}${junk7}${junk8}${junk9}" | sort -u | sudo tee ./interest/interesturi-js ;
 
 
+
 #---------------------------------------------------------------------------------------------------------------------------------#
 # Generate Wordlist
 printf '%b\n\n\n'; echo -e "$OKGREEN Step11 : Generate Wordlist (Parameter & Path) $RESET"
@@ -151,8 +152,8 @@ printf '%b\n\n\n'; echo -e "$OKGREEN Step11 : Generate Wordlist (Parameter & Pat
   cat ./interest/pathuri | egrep -v "=|${fil1}${fil2}${ext1}${ext2}" | unfurl path | sed 's#/#\n#g' | sort -u | egrep -v "[a-zA-Z]{20,40}" | sudo tee ./wordlist/paths
 
 
-#---------------------------------------------------------------------------------------------------------------------------------#
-# Fetch travis build log
-printf '%b\n\n\n'; echo -e "$OKGREEN Step10 : Fetch Travis Build Log $RESET"
-echo $1 | cut -d"." -f1 | sudo tee temp; for org in $(cat temp); do echo "$org"; done
-rm temp; cd ./juicy; secretz -c 10 -t $org; mv output/ travislog; cd ../;
+
+
+
+
+
