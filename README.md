@@ -1,6 +1,4 @@
-# Focus on Information Disclosure
 ```bash
-Reconnaissance & Collecting Juicy Data 
 # automate-recon <target.com>
 # automate-portscan <target.com>
 > subdomain.out                   : Subdomain list               < $target
@@ -8,10 +6,8 @@ Reconnaissance & Collecting Juicy Data
    > ipresolv.out                 : IP resolved list             < subdomain.out
    > httpx-raws.out               : Probing + statuscode         < subdomain.out 
    > httpx.out                    : Subdomain live [80,443]      < httpx-raws.out 
-   > httpx-9999.out               : Subdomain live [8000-9999]   < unique httpx.out::subdomain.out
    > openport.out                 : Active port scanning [full]  < cf-ipresolv.out
-   > webstack-cname.out           : Hosting/Webstack [cname]     < subdomain.out   
-   > webstack-analyzes.out        : Webanalyzer scan             < httpx.out
+   > webstack.out                 : Hosting/Webstack             < subdomain.out   
    > ./raws/allurls               : Juicy crawling data          < subdomain.out
    > subdomain-hide.out           : Hidden subdomain from crawl  < ./raws/allurls
 
@@ -110,55 +106,4 @@ XX. Other
     --> Custom nuclei Pattern : New CVE&advisores, etc
     --> Dependencies vulnerability checking (SCA)
     --> SAST
-```
-
-
-
-# Hardcoded/Sensitive Data Regex Pattern
-| Platform              | Key Type              | Regular Expression                                                           |
-|-----------------------|--------------------   |----------------------------------------------------------------------------  |
-| ***Generic credential***    | Password, Token, etc  | "[0-9a-zA-Z*-_/]{20,80}"                                               |
-| Private Key           | RSA, DSA, EC, PGP     | "---(BEGIN|END)"                                                             |
-| Amazon MWS            | Auth Token            | "amzn\\.mws\\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"  |
-| AWS                   | Access Key ID         | "AKIA[0-9A-Z]{16}"                                                           |
-|                       | Secret Access Key     | ***(Generic Credential)*** "[0-9a-zA-Z*-_/+]{20,80}"                         |
-| Bitly                 | OAuth Access Token    | ***(Generic Credential)***                                                   |
-| CircleCI              | Access Token          | ***(Generic Credential)*** "[0-9a-f]{40}"                                    |
-| Facebook              | OAuth Access Token    | ***(Generic Credential)*** "[A-Za-z0-9]{125}"                                |
-| Gitlab                | Auth Token            | ***(Generic Credential)***                                                   |
-| Github                | OAuth Access Token    | ***(Generic Credential)*** "[0-9a-zA-Z]{35,40}"                              |
-| Google                | API Key               | "AIza[0-9A-Za-z*]{35}"                                                       |
-|                       | OAuth Access Token    | "ya29\\.[0-9A-Za-z*]+"                                                       |
-| Instagram             | OAuth Access Token    | "[0-9a-fA-F]{7}\\.[0-9a-fA-F]{32}"                                           |
-| MailChimp             | API Key               | "[0-9a-f]{32}-us[0-9]{1,2}"                                                  |
-| Mailgun               | API Key               | "key-[0-9a-zA-Z]{32}"                                                        |
-| NPM                   | Auth Token            | "[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}"               |
-| PayPal Braintree      | OAuth Access Token    | "access_token\\$production\\$[0-9a-z]{16}\\$[0-9a-f]{32}"                    |
-| Picatic               | API Key               | "sk_live_[0-9a-z]{32}"                                                       |
-| Slack                 | OAuth Access Token    | "key-[0-9a-zA-Z]{32}"                                                        |
-| SendGird              | API Key               | "SG\\.[a-zA-Z0-9]{22}\\.[a-zA-Z0-9*-_]{43}"                                  |
-| Stripe                | API Key               | "sk_live_[0-9a-zA-Z]{24}"                                                    |
-|                       | Restricted API Key    | "rk_live_[0-9a-zA-Z]{24}"                                                    |
-| Square                | Access Token          | "sq0atp-[0-9A-Za-z*]{22}"                                                    |
-|                       | OAuth Secret          | "sq0csp-[0-9A-Za-z*]{43}"                                                    |
-| Twilio                | Account/App SID       | "(AC|AP)[a-zA-Z0-9]{32}"                                                     |
-|                       | API Key SID           | "SK[0-9a-fA-F]{32}"                                                          |
-| Travis CI             | Auth Token            | ***(Generic Credential)***                                                   |
-
-
-
-```bash
-Todo
-# Firebase Custom Token and API key
-# Google Cloud Messaging Key
-# Hubspot API key
-# Dropbox API Bearer/Auth Token
-# Microsoft Azure Client ID, secret & Tenant ID
-# Mapbox API key 
-# Jumpcloud API key
-# Salesforce API Key/Bearer Token 
-# WPEngine API key & Account Name
-# DataDog API Key & Application Key
-# Gitlab Personal/Private Token
-# Paypal ClientID & Secret
 ```
