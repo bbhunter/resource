@@ -1,4 +1,4 @@
-```console
+```bash
 # automate-recon <target.com>
 # automate-portscan <target.com>
 > subdomain.out                   : Subdomain list               < $target
@@ -29,7 +29,7 @@
    > ./wordlist/js-variable          : Collecting var                < ./juicyfiles/download/js*
 ```
 
-```console
+```bash
 # automate-brute <target.com>
 1. Juicy Path & Endpoint Bruteforce
    --> ./brute/internalpath     # /resource/wordlist/dir/internalpath.txt   <-- virtualhost.out
