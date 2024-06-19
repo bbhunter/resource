@@ -2,7 +2,6 @@
 ## Reconnaissance & Collecting Juicy Data 
 ```bash
 # automate-recon <target.com>
-# automate-dnsgen <target.com>
 # automate-portscan <target.com>
 ------------------------------------------------------------------------------------------------
 > subdomain.out                   : Subdomain list               < $target
@@ -14,22 +13,13 @@
    > openport.out                 : Active port scanning [full]  < cf-ipresolv.out
    > webstack-cname.out           : Hosting/Webstack [cname]     < subdomain.out   
    > webstack-analyzes.out        : Webanalyzer scan             < httpx.out
-   > subdomain-hidden.out         : Webanalyzer scan             < ./raws/allurls
-      > ./raws/allurls               : Juicy crawling
-      > ./raws/subdomain-resolved    : Subdomain resolvable [A,AAAA,CNAME]
+   > ./raws/allurls               : Juicy crawling data          < subdomain.out
+   > subdomain-hide.out           : Hidden subdomain from crawl  < ./raws/allurls
 
 # automate-download <target.com>
 ------------------------------------------------------------------------------------------------
-> ./juicy/jsfiles                 : All JS files :: gau + gospider result
-> ./juicy/jsfiles2                : Extract JS files < ./juicyfiles/jsfile + otherjuicyfile 
-> ./juicy/node_module             : Extract JS files < /node_modules/
-> ./juicy/otherfiles              : All other juicyfiles [json,toml,etc] :: gau + gospider
-> ./juicy/travislog               : Fetched Travis build log
-   > ./juicy/download/js/            : download < ./juicyfiles/jsfiles     --force-dir + minify
-   > ./juicy/download/js2/           : download < ./juicyfiles/jsfiles2    --force-dir + minify
-   > ./juicy/download/node_module/   : download < ./juicyfiles/node_module --force-dir + minify
-   > ./juicy/download/other/         : download < ./juicyfiles/otherfiles  --force-dir
-
+> ./juicy/listfiles               : List juicy files
+> ./juicy/download/*              : All js & other juicyfiles [json,toml,etc]
 
 
 # Output = All Juicy Data + Generate Interest Pattern
@@ -42,10 +32,9 @@
 > ./interest/passingparams        : Passing parameter list        < ./raws/allurls
 > ./interest/pathuri              : Extract Path only <brute>     < ./raws/allurls
 > ./interest/paramsuri            : Extract params only <brute>   < ./interest/paramsuniq
-
-> ./wordlist/parameter            : Generate params wordlist      < ./raws/allurls
-> ./wordlist/paths                : Generate paths wordlist       < ./raws/allurls * js
-> ./wordlist/js-variable          : Collecting var                < ./juicyfiles/download/js*
+   > ./wordlist/parameter            : Generate params wordlist      < ./raws/allurls
+   > ./wordlist/paths                : Generate paths wordlist       < ./raws/allurls * js
+   > ./wordlist/js-variable          : Collecting var                < ./juicyfiles/download/js*
 ```
 
 
