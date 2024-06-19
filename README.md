@@ -1,9 +1,8 @@
 # Focus on Information Disclosure
-## Reconnaissance & Collecting Juicy Data 
 ```bash
+Reconnaissance & Collecting Juicy Data 
 # automate-recon <target.com>
 # automate-portscan <target.com>
-------------------------------------------------------------------------------------------------
 > subdomain.out                   : Subdomain list               < $target
    > virtualhost.out              : Subdomain [vhost]            < subdomain.out 
    > ipresolv.out                 : IP resolved list             < subdomain.out
@@ -17,13 +16,11 @@
    > subdomain-hide.out           : Hidden subdomain from crawl  < ./raws/allurls
 
 # automate-download <target.com>
-------------------------------------------------------------------------------------------------
 > ./juicy/listfiles               : List juicy files
 > ./juicy/download/*              : All js & other juicyfiles [json,toml,etc]
 
 
 # Output = All Juicy Data + Generate Interest Pattern
-------------------------------------------------------------------------------------------------
 > ./interest/variablefromjs       : Interest variable from js     < ./juicyfiles/download/js*
 > ./interest/querystrings-keys    : List querystrings + keys      < ./raws/allurls
 > ./interest/interesturi-allurls  : Interest path [/api,etc]      < ./raws/allurls
@@ -37,11 +34,8 @@
    > ./wordlist/js-variable          : Collecting var                < ./juicyfiles/download/js*
 ```
 
-
-## Parameter & Path Discovery (Brute)
 ```bash
 # automate-brute <target.com>
-------------------------------------------------------------------------------------------------
 1. Juicy Path & Endpoint Bruteforce
    --> ./brute/internalpath     # /resource/wordlist/dir/internalpath.txt   <-- virtualhost.out
    --> ./brute/bigwordlist      # /resource/wordlist/dir/big-wordlist.txt   <-- ./interest/pathuri
@@ -59,7 +53,6 @@
 # automate-testing <target.com>
 # automate-s3discovery <target.com>
 # Automate Testing using Pattern
-------------------------------------------------------------------------------------------------
 > ./fuzz/fuzz-fileinclusion       : gf fileinclusion pattern      < ./interest/paramsuniq
 > ./fuzz/fuzz-openredirect        : gf redirect pattern           < ./interest/paramsuniq
 > ./fuzz/fuzz-rce                 : gf rce pattern                < ./interest/paramsuniq
@@ -67,7 +60,7 @@
 > ./fuzz/fuzz-sqli                : gf sqli pattern               < ./interest/paramsuniq
 > ./fuzz/fuzz-ssrf                : gf ssrf pattern               < ./interest/paramsuniq
 > ./fuzz/fuzz-ssti                : gf ssti pattern               < ./interest/paramsuniq
-------------------------------------------------------------------------------------------------
+
 1.  Hardcoded Sensitive Data Exposure -- Scanning download juicy files 
     <-- ./juicyfiles/download
     --> ./automationtesting/sensitivedata-generic
