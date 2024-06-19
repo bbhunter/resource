@@ -1,6 +1,6 @@
-```bash
 # automate-recon <target.com>
 # automate-portscan <target.com>
+```console
 > subdomain.out                   : Subdomain list               < $target
    > virtualhost.out              : Subdomain [vhost]            < subdomain.out 
    > ipresolv.out                 : IP resolved list             < subdomain.out
@@ -10,11 +10,12 @@
    > webstack.out                 : Hosting/Webstack             < subdomain.out   
    > ./raws/allurls               : Juicy crawling data          < subdomain.out
    > subdomain-hide.out           : Hidden subdomain from crawl  < ./raws/allurls
-
+```
 # automate-download <target.com>
+```console
 > ./juicy/listfiles               : List juicy files
 > ./juicy/download/*              : All js & other juicyfiles [json,toml,etc]
-
+```
 
 # Output = All Juicy Data + Generate Interest Pattern
 > ./interest/variablefromjs       : Interest variable from js     < ./juicyfiles/download/js*
