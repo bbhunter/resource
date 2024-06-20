@@ -10,14 +10,14 @@
    > webstack.out                 : Hosting/Webstack             < subdomain.out   
    > ./raws/allurls               : Juicy crawling data          < subdomain.out
    > subdomain-hide.out           : Hidden subdomain from crawl  < ./raws/allurls
------------------------------------------------------------------------------------------------------
 
 # automate-download <target.com>
-> ./juicy/listfiles               : List juicy files
-> ./juicy/download/*              : All js & other juicyfiles [json,toml,etc]
------------------------------------------------------------------------------------------------------
+   > ./juicy/listfiles               : List juicy files
+   > ./juicy/download/*              : All js & other juicyfiles [json,toml,etc]
 
-   # Output = All Juicy Data + Generate Interest Pattern
+# Output = All Juicy Data + Generate Interest Pattern
+< ./juicy/download/*.*
+< ./raws/allurls
    > ./interest/variablefromjs       : Interest variable from js     < ./juicyfiles/download/js*
    > ./interest/querystrings-keys    : List querystrings + keys      < ./raws/allurls
    > ./interest/interesturi-allurls  : Interest path [/api,etc]      < ./raws/allurls
@@ -38,12 +38,11 @@
    --> ./brute/bigwordlist      # /resource/wordlist/dir/big-wordlist.txt   <-- ./interest/pathuri
    --> ./brute/sortwordlist     # /resource/wordlist/dir/short-wordlist.txt <-- ./interest/pathuri
    --> ./brute/springboot       # /resource/wordlist/dir/spring-boot.txt    <-- ./interest/pathuri
------------------------------------------------------------------------------------------------------
+
 2. Parameter discovery (bruteforce)
    <-- ./interest/paramsuri
    --- ./brute/parameter1       # ./wordlist/parameter 
    --> ./brute/parameter2       # /resource/wordlist/parameter
------------------------------------------------------------------------------------------------------
 ```
 
 
