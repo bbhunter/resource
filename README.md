@@ -1,7 +1,6 @@
 ```bash
 # automate-recon <target.com>
 # automate-portscan <target.com>
------------------------------------------------------------------------------------------------------
 > subdomain.out                   : Subdomain list               < $target
    > virtualhost.out              : Subdomain [vhost]            < subdomain.out 
    > ipresolv.out                 : IP resolved list             < subdomain.out
@@ -14,12 +13,10 @@
 -----------------------------------------------------------------------------------------------------
 
 # automate-download <target.com>
------------------------------------------------------------------------------------------------------
 > ./juicy/listfiles               : List juicy files
 > ./juicy/download/*              : All js & other juicyfiles [json,toml,etc]
 -----------------------------------------------------------------------------------------------------
 
------------------------------------------------------------------------------------------------------
    # Output = All Juicy Data + Generate Interest Pattern
    > ./interest/variablefromjs       : Interest variable from js     < ./juicyfiles/download/js*
    > ./interest/querystrings-keys    : List querystrings + keys      < ./raws/allurls
@@ -32,20 +29,17 @@
    > ./wordlist/parameter            : Generate params wordlist      < ./raws/allurls
    > ./wordlist/paths                : Generate paths wordlist       < ./raws/allurls * js
    > ./wordlist/js-variable          : Collecting var                < ./juicyfiles/download/js*
------------------------------------------------------------------------------------------------------
 ```
 
 ```bash
 # automate-brute <target.com>
 1. Juicy Path & Endpoint Bruteforce
------------------------------------------------------------------------------------------------------
    --> ./brute/internalpath     # /resource/wordlist/dir/internalpath.txt   <-- virtualhost.out
    --> ./brute/bigwordlist      # /resource/wordlist/dir/big-wordlist.txt   <-- ./interest/pathuri
    --> ./brute/sortwordlist     # /resource/wordlist/dir/short-wordlist.txt <-- ./interest/pathuri
    --> ./brute/springboot       # /resource/wordlist/dir/spring-boot.txt    <-- ./interest/pathuri
 -----------------------------------------------------------------------------------------------------
 2. Parameter discovery (bruteforce)
------------------------------------------------------------------------------------------------------
    <-- ./interest/paramsuri
    --- ./brute/parameter1       # ./wordlist/parameter 
    --> ./brute/parameter2       # /resource/wordlist/parameter
@@ -58,9 +52,7 @@
 # automate-testing <target.com>
 # automate-s3discovery <target.com>
 # Automate Testing using Pattern
------------------------------------------------------------------------------------------------------
 > vuln/nuclei-cvewebstack.out      : CVE Scanner by webstack      <
-
 > ./fuzz/fuzz-fileinclusion       : gf fileinclusion pattern      < ./interest/paramsuniq
 > ./fuzz/fuzz-openredirect        : gf redirect pattern           < ./interest/paramsuniq
 > ./fuzz/fuzz-rce                 : gf rce pattern                < ./interest/paramsuniq
