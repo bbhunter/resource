@@ -15,9 +15,7 @@
    > ./juicy/listfiles               : List juicy files
    > ./juicy/download/*              : All js & other juicyfiles [json,toml,etc]
 
-# Output = All Juicy Data + Generate Interest Pattern
-< ./juicy/download/*.*
-< ./raws/allurls
+   # Output = All Juicy Data + Generate Interest Pattern
    > ./interest/variablefromjs       : Interest variable from js     < ./juicyfiles/download/js*
    > ./interest/querystrings-keys    : List querystrings + keys      < ./raws/allurls
    > ./interest/interesturi-allurls  : Interest path [/api,etc]      < ./raws/allurls
