@@ -49,55 +49,13 @@
 # automate-disclosure
 1. CVE Advisories based on Webstack
 2. Subdomain Takeover
-3. Discovery Sensitive Data Exposure 
+3. Discovery Sensitive Data Exposure
+   - Downloaded Files
+   - Other url (github, bucket)
 4. Discovery Interest Path
 5. S3 Bucket Discovery (Soon)
 
+
 # automate-fuzz
-   > vuln/nuclei-cvewebstack.out      : CVE Scanner by webstack      <
-   > ./fuzz/fuzz-fileinclusion       : gf fileinclusion pattern      < ./interest/paramsuniq
-   > ./fuzz/fuzz-openredirect        : gf redirect pattern           < ./interest/paramsuniq
-   > ./fuzz/fuzz-rce                 : gf rce pattern                < ./interest/paramsuniq
-   > ./fuzz/fuzz-idor                : gf idor pattern               < ./interest/paramsuniq
-   > ./fuzz/fuzz-sqli                : gf sqli pattern               < ./interest/paramsuniq
-   > ./fuzz/fuzz-ssrf                : gf ssrf pattern               < ./interest/paramsuniq
-   > ./fuzz/fuzz-ssti                : gf ssti pattern               < ./interest/paramsuniq
 
-
-2.  S3 bucket discovery
-    <-- ./raws/data-gospider + ./juicyfiles/*
-    <-- /root/resource/wordlist/s3 :: ./wordlist/s3bucketnames
-    --> ./automationtesting/s3bucket-all
-    --> ./automationtesting/s3bucket-brute 
-5.  CORS Misconfig Scan 
-    <-- httpx.out
-    --> ./automationtesting/cors-vuln
-6.  Unrestricted PUT method 
-    <-- httpx.out
-    --> ./automationtesting/unrestricted-putMethod
-7.  Open Redirect > Clickjacking, XSS, SSRF
-    <-- httpx.out
-    --> ./automationtesting/openredirect-vuln
-8.  XSS (Blind, Reflected)
-    <-- ./raws/paramsuniq
-    --> ./automationtesting/xss-reflected
-9.  SSTI > RCE 
-    <-- ./fuzz/fuzz-ssti
-    --> ./automationtesting/ssti-vuln
-10. SQLI Fuzzing (error based)
-    <-- ./fuzz/fuzz-sqli
-    --> ./automationtesting/sqli-vuln
-11. File Inclusion
-    <-- ./fuzz/fuzz-fileinclusion
-    --> ./automationtesting/fileinclusion-vuln
-12. HTTP Request Smuggling / Desync
-    <-- httpx.out
-    --> ./automationtesting/httpsmuggler-vuln
-XX. Other 
-    --> Command injection
-    --> Host Header Injection (x-forwarded-host) > Open Redirect
-    --> CRLF Injection > XSS, Cache-Poisoning
-    --> Custom nuclei Pattern : New CVE&advisores, etc
-    --> Dependencies vulnerability checking (SCA)
-    --> SAST
 ```
