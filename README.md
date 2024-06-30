@@ -1,7 +1,8 @@
 
 ### Recon
 ```sh
-> subdomain.out                : Subdomain list                   
+1. automate-recon <target.com>
+   > subdomain.out                : Subdomain list                   
    > virtualhost.out              : Subdomain [vhost]               < subdomain.out 
    > ipresolv.out                 : IP resolved list                < subdomain.out
    > httpx-raws.out               : Probing + statuscode            < subdomain.out 
@@ -11,18 +12,18 @@
       > subdomain-hide.out           : Hidden subdomain from crawl  < ./raws/allurls
       > ./interest/pathuri           : Extract Path only <brute>    < ./raws/allurls
 
-# automate-download <target.com>
+2. automate-download <target.com>
    > ./juicy/listfiles            : List juicy files
    > ./juicy/download/*           : All js & other juicyfiles [json,toml,etc]
 
-# automate-portscan <target.com>
+3. automate-portscan <target.com>
    > port-ipresolv.out            : Active port scanning from IP Address 
    > port-subdomain.out           : Active port scanning from Subdomain
 ```
 
 ### Bruteforce
 ```sh
-1. Juicy Path & Endpoint Bruteforce
+# Juicy Path & Endpoint Bruteforce
    --> ./brute/internalpath     # /resource/wordlist/dir/internalpath.txt   <-- virtualhost.out
    --> ./brute/bigwordlist      # /resource/wordlist/dir/big-wordlist.txt   <-- ./interest/pathuri
    --> ./brute/sortwordlist     # /resource/wordlist/dir/short-wordlist.txt <-- ./interest/pathuri
