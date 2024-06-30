@@ -1,4 +1,6 @@
-# automate-recon <target.com>
+
+### Recon
+```sh
 > subdomain.out                   : Subdomain list               < $target
    > virtualhost.out              : Subdomain [vhost]            < subdomain.out 
    > ipresolv.out                 : IP resolved list             < subdomain.out
@@ -16,22 +18,20 @@
 # automate-portscan <target.com>
    > port-ipresolv.out            : Active port scanning from IP Address 
    > port-subdomain.out           : Active port scanning from Subdomain
+```
 
-
-# automate-brute <target.com>
+### Bruteforce
+```sh
 1. Juicy Path & Endpoint Bruteforce
    --> ./brute/internalpath     # /resource/wordlist/dir/internalpath.txt   <-- virtualhost.out
    --> ./brute/bigwordlist      # /resource/wordlist/dir/big-wordlist.txt   <-- ./interest/pathuri
    --> ./brute/sortwordlist     # /resource/wordlist/dir/short-wordlist.txt <-- ./interest/pathuri
    --> ./brute/springboot       # /resource/wordlist/dir/spring-boot.txt    <-- ./interest/pathuri
-
-2. Parameter discovery (bruteforce)
-   <-- ./interest/paramsuri
-   --- ./brute/parameter1       # ./wordlist/parameter 
-   --> ./brute/parameter2       # /resource/wordlist/parameter
+```
 
 
-# automate-disclosure
+### Disclosure & Fuzzing
+```sh
 1. CVE Advisories based on Webstack
 2. Subdomain Takeover
 3. Discovery Sensitive Data Exposure
@@ -40,6 +40,5 @@
 4. Discovery Interest Path
 5. S3 Bucket Discovery (Soon)
 
-
 # automate-fuzz
-
+```
