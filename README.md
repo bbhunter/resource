@@ -1,12 +1,10 @@
 ```bash
 # automate-recon <target.com>
-# automate-portscan <target.com>
 > subdomain.out                   : Subdomain list               < $target
    > virtualhost.out              : Subdomain [vhost]            < subdomain.out 
    > ipresolv.out                 : IP resolved list             < subdomain.out
    > httpx-raws.out               : Probing + statuscode         < subdomain.out 
    > httpx.out                    : Subdomain live [80,443]      < httpx-raws.out 
-   > openport.out                 : Active port scanning [full]  < cf-ipresolv.out
    > webstack.out                 : Hosting/Webstack             < subdomain.out   
    > ./raws/allurls               : Juicy crawling data          < subdomain.out
    > subdomain-hide.out           : Hidden subdomain from crawl  < ./raws/allurls
@@ -26,6 +24,10 @@
    > ./wordlist/parameter            : Generate params wordlist      < ./raws/allurls
    > ./wordlist/paths                : Generate paths wordlist       < ./raws/allurls * js
    > ./wordlist/js-variable          : Collecting var                < ./juicyfiles/download/js*
+
+# automate-portscan <target.com>
+   > openport.out                 : Active port scanning [full]  < cf-ipresolv.out
+   > openport.out                 : Active port scanning [full]  < cf-ipresolv.out
 ```
 
 ```bash
@@ -50,48 +52,24 @@
 2. Subdomain Takeover
 3. Discovery Sensitive Data Exposure 
 4. Discovery Interest Path
+5. S3 Bucket Discovery (Soon)
+
+# automate-fuzz
+   > vuln/nuclei-cvewebstack.out      : CVE Scanner by webstack      <
+   > ./fuzz/fuzz-fileinclusion       : gf fileinclusion pattern      < ./interest/paramsuniq
+   > ./fuzz/fuzz-openredirect        : gf redirect pattern           < ./interest/paramsuniq
+   > ./fuzz/fuzz-rce                 : gf rce pattern                < ./interest/paramsuniq
+   > ./fuzz/fuzz-idor                : gf idor pattern               < ./interest/paramsuniq
+   > ./fuzz/fuzz-sqli                : gf sqli pattern               < ./interest/paramsuniq
+   > ./fuzz/fuzz-ssrf                : gf ssrf pattern               < ./interest/paramsuniq
+   > ./fuzz/fuzz-ssti                : gf ssti pattern               < ./interest/paramsuniq
 
 
-
-
-
-
-
-
-
-
-
-# automate-testing <target.com>
-# automate-s3discovery <target.com>
-# Automate Testing using Pattern
-> vuln/nuclei-cvewebstack.out      : CVE Scanner by webstack      <
-> ./fuzz/fuzz-fileinclusion       : gf fileinclusion pattern      < ./interest/paramsuniq
-> ./fuzz/fuzz-openredirect        : gf redirect pattern           < ./interest/paramsuniq
-> ./fuzz/fuzz-rce                 : gf rce pattern                < ./interest/paramsuniq
-> ./fuzz/fuzz-idor                : gf idor pattern               < ./interest/paramsuniq
-> ./fuzz/fuzz-sqli                : gf sqli pattern               < ./interest/paramsuniq
-> ./fuzz/fuzz-ssrf                : gf ssrf pattern               < ./interest/paramsuniq
-> ./fuzz/fuzz-ssti                : gf ssti pattern               < ./interest/paramsuniq
------------------------------------------------------------------------------------------------------
-
-1.  Hardcoded Sensitive Data Exposure -- Scanning download juicy files 
-    <-- ./juicyfiles/download
-    --> ./automationtesting/sensitivedata-generic
-    --> ./automationtesting/sensitivedata
 2.  S3 bucket discovery
     <-- ./raws/data-gospider + ./juicyfiles/*
     <-- /root/resource/wordlist/s3 :: ./wordlist/s3bucketnames
     --> ./automationtesting/s3bucket-all
     --> ./automationtesting/s3bucket-brute 
-3.  Subdomain takeover
-    <-- subdomain.out
-    --> ./automationtesting/takeover-nxdomain
-    --> ./automationtesting/takeover-subjack
-4.  CVEs/Advisories
-    <-- httpx.out
-    --> ./automationtesting/RCE-Jolokia
-    --> ./automationtesting/CVE-2020-5410       # Directory Traversal in Spring Cloud Config Server
-    --> ./automationtesting/CVE-2018-1000129    # Jolokia XSS
 5.  CORS Misconfig Scan 
     <-- httpx.out
     --> ./automationtesting/cors-vuln
