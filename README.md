@@ -18,7 +18,6 @@
    # Output = All Juicy Data + Generate Interest Pattern
    > ./interest/variablefromjs       : Interest variable from js     < ./juicyfiles/download/js*
    > ./interest/querystrings-keys    : List querystrings + keys      < ./raws/allurls
-   > ./interest/interesturi-allurls  : Interest path [/api,etc]      < ./raws/allurls
    > ./interest/interesturi-js       : Interest path [/api,etc]      < ./raws/data-gospider 
    > ./interest/paramsuniq           : Unique parameter list [live]  < ./raws/allurls
    > ./interest/passingparams        : Passing parameter list        < ./raws/allurls
@@ -46,6 +45,22 @@
 
 # Vulnerable Testing
 ```bash
+# automate-disclosure
+1. CVE Advisories based on Webstack
+2. Subdomain Takeover
+3. Discovery Sensitive Data Exposure 
+4. Discovery Interest Path
+
+
+
+
+
+
+
+
+
+
+
 # automate-testing <target.com>
 # automate-s3discovery <target.com>
 # Automate Testing using Pattern
