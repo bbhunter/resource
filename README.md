@@ -45,7 +45,6 @@
 ```
 
 
-# Vulnerable Testing
 ```bash
 # automate-disclosure
 1. CVE Advisories based on Webstack
