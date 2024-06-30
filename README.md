@@ -19,10 +19,9 @@
 3. automate-portscan <target.com>
    > port-ipresolv.out            : Active port scanning from IP Address 
    > port-subdomain.out           : Active port scanning from Subdomain
-```
+
 
 ### Bruteforce
-```sh
 # Juicy Path & Endpoint Bruteforce
    --> ./brute/internalpath     # /resource/wordlist/dir/internalpath.txt   <-- virtualhost.out
    --> ./brute/bigwordlist      # /resource/wordlist/dir/big-wordlist.txt   <-- ./interest/pathuri
