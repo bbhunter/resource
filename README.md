@@ -1,7 +1,7 @@
 
 ### Recon
 ```sh
-> subdomain.out                 : Subdomain list                   
+> subdomain.out                : Subdomain list                   
    > virtualhost.out              : Subdomain [vhost]               < subdomain.out 
    > ipresolv.out                 : IP resolved list                < subdomain.out
    > httpx-raws.out               : Probing + statuscode            < subdomain.out 
