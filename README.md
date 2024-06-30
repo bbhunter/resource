@@ -1,15 +1,15 @@
 
 ### Recon
 ```sh
-> subdomain.out                   : Subdomain list               < $target
-   > virtualhost.out              : Subdomain [vhost]            < subdomain.out 
-   > ipresolv.out                 : IP resolved list             < subdomain.out
-   > httpx-raws.out               : Probing + statuscode         < subdomain.out 
-   > httpx.out                    : Subdomain live [80,443]      < httpx-raws.out 
-   > webstack.out                 : Hosting/Webstack             < subdomain.out   
-   > ./raws/allurls               : Juicy crawling data          < subdomain.out
-   > subdomain-hide.out           : Hidden subdomain from crawl  < ./raws/allurls
-   > ./interest/pathuri           : Extract Path only <brute>    < ./raws/allurls
+> subdomain.out                 : Subdomain list                   
+   > virtualhost.out              : Subdomain [vhost]               < subdomain.out 
+   > ipresolv.out                 : IP resolved list                < subdomain.out
+   > httpx-raws.out               : Probing + statuscode            < subdomain.out 
+   > httpx.out                    : Subdomain live [80,443]         < httpx-raws.out 
+   > webstack.out                 : Hosting/Webstack                < subdomain.out   
+   > ./raws/allurls               : Juicy crawling data             < subdomain.out
+      > subdomain-hide.out           : Hidden subdomain from crawl  < ./raws/allurls
+      > ./interest/pathuri           : Extract Path only <brute>    < ./raws/allurls
 
 # automate-download <target.com>
    > ./juicy/listfiles            : List juicy files
@@ -26,7 +26,6 @@
    --> ./brute/internalpath     # /resource/wordlist/dir/internalpath.txt   <-- virtualhost.out
    --> ./brute/bigwordlist      # /resource/wordlist/dir/big-wordlist.txt   <-- ./interest/pathuri
    --> ./brute/sortwordlist     # /resource/wordlist/dir/short-wordlist.txt <-- ./interest/pathuri
-   --> ./brute/springboot       # /resource/wordlist/dir/spring-boot.txt    <-- ./interest/pathuri
 ```
 
 
