@@ -23,9 +23,9 @@
 
 ### Bruteforce
 # Juicy Path & Endpoint Bruteforce
-   --> ./brute/internalpath     # /resource/wordlist/dir/internalpath.txt   <-- virtualhost.out
-   --> ./brute/bigwordlist      # /resource/wordlist/dir/big-wordlist.txt   <-- ./interest/pathuri
-   --> ./brute/sortwordlist     # /resource/wordlist/dir/short-wordlist.txt <-- ./interest/pathuri
+   > "virtualhost.out"    # /resource/wordlist/dir/internalpath.txt   <-- 
+   > "pathuri"            # /resource/wordlist/dir/big-wordlist.txt   <-- ./interest/
+   > "pathuri"            # /resource/wordlist/dir/short-wordlist.txt <-- ./interest/pathuri
 ```
 
 
