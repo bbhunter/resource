@@ -32,6 +32,8 @@
 ### Disclosure & Fuzzing
 ```sh
 1. CVE Advisories based on Webstack
+   > vuln/nuclei-cvewebstack-subdomain.out
+   > vuln/nuclei-cvewebstack-ipresolv.out
 2. Subdomain Takeover
 3. Discovery Sensitive Data Exposure
    - Downloaded Files
