@@ -14,8 +14,10 @@
       > ./raws/path-interest         : Extract Path Interest        < ./raws/allurls
 
 2. automate-download <target.com>
-   > ./juicy/listfiles            : List juicy files
-   > ./juicy/download/*           : All js & other juicyfiles [json,toml,etc]
+   > ./raws/listfiles            : List juicy files
+   > ./raws/download/*           : All js & other juicyfiles [json,toml,etc]
+      > ./raws/download-path         : Extract Path from Files      < ./raws/download/*
+      > ./raws/download-url          : Extract URLs from Files      < ./raws/download/*
 
 3. automate-portscan <target.com>
    > port-ipresolv.out            : Active port scanning from IP Address 
