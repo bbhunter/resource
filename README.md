@@ -22,12 +22,6 @@
    > port-ipresolv.out            : Active port scanning from IP Address 
    > port-subdomain.out           : Active port scanning from Subdomain
 
-
-### Bruteforce
-# Juicy Path & Endpoint Bruteforce
-   > "virtualhost.out"    # /resource/wordlist/dir/internalpath.txt   <-- 
-   > "pathuri"            # /resource/wordlist/dir/big-wordlist.txt   <-- ./interest/
-   > "pathuri"            # /resource/wordlist/dir/short-wordlist.txt <-- ./interest/pathuri
 ```
 
 
