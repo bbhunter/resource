@@ -1,8 +1,0 @@
-{
-    "flags": "-HnriE",
-    "patterns": [
-		"[0-9a-zA-Z*-_/+]{8,80}",
-		"---(BEGIN|END)"
-	]
-}
-
