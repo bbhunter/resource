@@ -1,5 +1,3 @@
-
-### Recon
 ```sh
 1. automate-recon <target.com>
    > subdomain.out            : Subdomain list                   
