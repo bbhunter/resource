@@ -33,9 +33,9 @@ cat httpx-raws.out | awk '{print $3}' | sudo tee httpx.out;
 #---------------------------------------------------------------------------------------------------------------------------------#
 # Check Webstack
 printf '%b\n\n\n'; echo -e "$OKGREEN Step4 : Uncovers technologies from Subdomain list $RESET"
-cat subdomain.out | dnsx -silent -cname -resp | sudo tee webstack/webstack-cname.out;
-cat httpx.out | sudo /home/tool/httpx -td | sudo tee webstack/webstack-httpx.out;
-cat webstack/webstack-cname.out webstack/webstack-httpx.out | sudo tee webstack.out | sudo rm -rf webstack/
+cat subdomain.out | dnsx -silent -cname -resp | sudo tee webstack-cname.out;
+cat httpx.out | sudo /home/tool/httpx -td | sudo tee webstack-httpx.out;
+cat webstack-cname.out webstack-httpx.out | sudo tee webstack.out | sudo rm webstack-cname.out webstack-httpx.out;
 
 
 #---------------------------------------------------------------------------------------------------------------------------------#
@@ -60,22 +60,14 @@ diff subdomain.out subdomain-hide-temp.out | sudo tee subdomain-hide.out; sudo r
 
 #---------------------------------------------------------------------------------------------------------------------------------#
 # Colecting Juicy file 
-printf '%b\n\n\n'; echo -e "$OKGREEN Step7 : Collect interesting parameter + filter query strings parameter $RESET"
+printf '%b\n\n\n'; echo -e "$OKGREEN Step7 : Collect interesting Path & Files $RESET"
 cd /home/Sudomy/$1/Sudomy-Output/$1
-sudo mkdir juicy juicy/download;
 filterpath="(\/cdn|wp-(content|admin|includes)\/|\?ver=|\/recaptcha|wwww\.google)|"
 filter1="s3Capcha|wow\.min|jasny-bootstrap|jasny-bootstrap\.min|node_modules|";
 filter2="jquery|ravenjs|static\.freshdev|"
 filter3="wpgroho|polyfill\.min|bootstrap|";
 filter4="myslider|modernizr|modernizr\.(min|custom)|hip";	
 
-egrep "\.js|\.json|\.txt|\.yaml|\.toml|\.xml|\.config|\.tar|\.gz|\.log" ./raws/allurls | cut -d"?" -f1 | \
-egrep -v "${filterpath}${filter1}${filter2}${filter3}${filter4}" | sort -u | sudo tee ./juicy/listfiles;
-
-
-
-#---------------------------------------------------------------------------------------------------------------------------------#
-# Collect Path --> Bruteforce
 ext1="\.(jpg|jpeg|png|doc|svg|pdf|ttf|eot|txt|cssx|css|gif|ico|woff|woff2|vue|js|json)|"
 ext2="(eot|svg|ttf|woff|woff2|gif|css|ico|otf|ts|scss)\?"
 
@@ -98,5 +90,16 @@ junk7="etc\/(gmt|utc)|";
 junk8="node_modules)|\_next|\%0A|";
 junk9="zdassets\.com|datadoghq|googletagmanager\.com|unpkg\.com"
 
-cat raws/allurls | grep -v = | sed -e 's/\/[^\/]*$//' | egrep -v "${junk1}${junk2}${junk3}${junk4}${junk5}${junk6}${junk7}${junk8}${junk9}" | \
-unfurl format %s://%d%p/ | sort -u | sudo /home/tool/httpx sudo tee pathuri; 
+		# Collect List Files (js,txt,json)
+		egrep "\.js|\.json|\.txt|\.yaml|\.toml|\.xml|\.config|\.tar|\.gz|\.log" ./raws/allurls | cut -d"?" -f1 | \
+		egrep -v "${filterpath}${filter1}${filter2}${filter3}${filter4}" | sort -u | sudo tee ./raws/listfiles;
+
+		# Discovery Interest Path
+		egrep -v "${junkpath1}${junk1}${junk2}${junk3}${junk4}${junk5}${junk6}${junk7}${junk8}${junk9}" ./raws/allurls | \
+		egrep "${path1}${path2}${path3}" | sudo tee raws/path-interest;
+
+		# Collect Path --> Bruteforce
+		cat raws/allurls | grep -v = | sed -e 's/\/[^\/]*$//' | egrep -v "${junk1}${junk2}${junk3}${junk4}${junk5}${junk6}${junk7}${junk8}${junk9}" | \
+		unfurl format %s://%d%p/ | sort -u | sudo /home/tool/httpx | sudo tee raws/path-uri; 
+
+
