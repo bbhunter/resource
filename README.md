@@ -10,7 +10,8 @@
    > webstack.out                 : Hosting/Webstack                < subdomain.out   
    > ./raws/allurls               : Juicy crawling data             < subdomain.out
       > subdomain-hide.out           : Hidden subdomain from crawl  < ./raws/allurls
-      > ./interest/pathuri           : Extract Path only <brute>    < ./raws/allurls
+      > ./raws/path-uri              : Extract Path only <brute>    < ./raws/allurls
+      > ./raws/path-interest         : Extract Path Interest        < ./raws/allurls
 
 2. automate-download <target.com>
    > ./juicy/listfiles            : List juicy files
