@@ -34,8 +34,7 @@
 3. Discovery Sensitive Data Exposure
    - Downloaded Files
    - Other url (github, bucket)
-4. Discovery Interest Path
-5. S3 Bucket Discovery (Soon)
+4. S3 Bucket Discovery (Soon)
 
 # automate-fuzz
 ```
